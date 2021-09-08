@@ -44,8 +44,12 @@ POST requests and to persist and receive data.
 
 Install it by executing `npm install -g json-server`. (If this command errors
 out, you may need to run `sudo npm install -g json-server` instead; you will
-likely also need to provide your system password.) To start up JSON Server, run
-`json-server --watch db.json` in your terminal.
+likely also need to provide your system password.)
+
+To start up JSON Server, run `json-server --watch db.json` in your terminal.
+**Note**: Running this command will instruct `json-server` to use a `db.json`
+file in your terminal's current directory, so make sure to run this command from
+the same directory as this lab.
 
 Once the server is running, you'll see a list of available resource paths in the
 terminal:
@@ -70,6 +74,14 @@ data.
 The tests in this lab do not need JSON Server to be running, but if you would
 like to run tests while also running the server, open a second tab in your
 terminal.
+
+> **Note**: For users of the [Live Server VSCode extension][live-server], you'll
+> need to do a bit of extra configuration so that the `json-server` plays nicely
+> with Live Server. Follow the steps in [this gist][live-server settings] (you'll 
+> only need to do this once), then come back to this lesson.
+
+[live-server]: https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
+[live-server settings]: https://gist.github.com/ihollander/cc5f36c6447d15dea6a16f68d82aacf7
 
 ## Analyze Data Sent in an HTML Form
 
@@ -426,8 +438,9 @@ browser to gain access to your `submitData` function in console.
 
 **Note**: The tests in this lab need access to the `fetch()` request inside
 `submitData`. In order to give them access, write your solution so that
-`submitData` _returns_ the `fetch()`. This will not change the behavior of
-your `fetch()`.
+`submitData` _returns_ the `fetch()`. You can do this by simply adding the
+`return` keyword in front of the `fetch()` request. This will not change the
+behavior of your `fetch()`.
 
 ### Test 1 - Send Data
 
@@ -464,13 +477,6 @@ add a `catch()`.
 When writing the callback function for your `catch()`, expect to receive an
 object on error with a property, `message`, containing info about what went
 wrong. Write code to append this message to the DOM when `catch()` is called.
-
-### Test 4 - Return the Fetch Chain
-
-An amazing feature of `fetch()` is that if you _return_ it, _other_ functions
-can tack on _their own_ `then()` and `catch()` calls. While we won't explore
-this amazing idea in this lesson, let's learn good habits and be sure to return
-the `fetch()` chain from our `submitData` function.
 
 ## Conclusion
 
